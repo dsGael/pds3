@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "167343956735",
+    "project_id": "app-compra-y-venta-bd03e",
+    "storage_bucket": "app-compra-y-venta-bd03e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167343956735:android:fafbdc29c0c12734fd62ca",
+        "android_client_info": {
+          "package_name": "com.example.appcomprayventa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsER1VyRHJY9ryDkLas1x5OMfJmsrP1-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
