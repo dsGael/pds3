@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">App Compra y Venta</string>
+
     <string name="Item_Inicio">Inicio</string>
     <string name="Item_Chats">Chats</string>
     <string name="Item_Vender">Vender</string>
     <string name="Item_Mis_Anuncios">Mis Anuncios</string>
     <string name="Item_Cuenta">Cuenta</string>
+
+    <string name="TituloRL">Titulo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

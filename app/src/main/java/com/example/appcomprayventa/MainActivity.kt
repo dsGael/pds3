@@ -8,21 +8,29 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding;
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityMainBinding.inflate(layoutInflater)
-
-        enableEdgeToEdge()
         setContentView(binding.root)
-        binding.
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding.BottomNV.setOnItemSelectedListener { item ->
+            when(item.itemId){
+                R.id.Item_Inicio->{
+                    true
+                }
+                R.id.Item_Chats->{
+                    true
+                }
+                R.id.Item_Cuenta->{
+                    true
+                }
+                R.id.Item_Mis_Anuncios->{
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
         }
     }
 }
