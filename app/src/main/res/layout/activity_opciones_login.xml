@@ -13,7 +13,40 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="30dp"
-        android:gravity="center"
-    />
+        android:gravity="center">
+
+        <ImageView
+            android:src="@drawable/ic_email"
+            android:layout_width="60dp"
+            android:layout_height="80dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/Ingresar_email"
+            android:text="@string/Ingresar_email"
+            android:textAllCaps="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/m_button_height"
+            app:cornerRadius="8dp"
+            />
+
+        <ImageView
+            android:src="@drawable/ic_google"
+            android:layout_width="60dp"
+            android:layout_height="80dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/Ingresar_google"
+            android:text="@string/Ingresar_google"
+            android:textAllCaps="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/m_button_height"
+            app:cornerRadius="8dp"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>>
+
+
 
 </RelativeLayout>
