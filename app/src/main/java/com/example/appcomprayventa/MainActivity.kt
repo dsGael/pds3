@@ -4,11 +4,11 @@ package com.example.appcomprayventa
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.appcomprayventa.Fragmentos.FragmentChats
 import com.example.appcomprayventa.Fragmentos.FragmentoInicio
-import com.example.appcomprayventa.Fragmentos.FragmentCuenta
 import com.example.appcomprayventa.Fragmentos.FragmentMisAnuncios
-import com.example.appcomprayventa.Opciones_Login.ActivityLoginEmail
 import com.example.appcomprayventa.databinding.ActivityMainBinding
+import com.example.appcomprayventa.fragmentos.FragmentCuenta
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -28,15 +28,19 @@ class MainActivity : AppCompatActivity() {
         binding.BottomNV.setOnItemSelectedListener { item ->
             when(item.itemId){
                 R.id.Item_Inicio->{
+                    verFragmentInicio()
                     true
                 }
                 R.id.Item_Chats->{
+                    verFragmentChats()
                     true
                 }
                 R.id.Item_Mis_Anuncios->{
+                    verFragmentMisAnuncios()
                     true
                 }
                 R.id.Item_Cuenta->{
+                    verFragmentCuenta()
                     true
                 }
                 else -> {
@@ -61,7 +65,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun verFragmentChats(){
         binding.TituloRL.text = "Chats"
-        val fragment = FragmentCuenta()
+        val fragment = FragmentChats()
         val fragmenteTransition = supportFragmentManager.beginTransaction()
         fragmenteTransition.replace(binding.FragmentL1.id, fragment, "FragmentChats")
         fragmenteTransition.commit()
