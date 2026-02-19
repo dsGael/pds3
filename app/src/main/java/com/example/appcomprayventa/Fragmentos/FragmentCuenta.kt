@@ -1,4 +1,4 @@
-package com.example.appcomprayventa.fragmentos
+package com.example.appcomprayventa.Fragmentos
 
 import android.content.Context
 import android.content.Intent

@@ -8,7 +8,7 @@ import com.example.appcomprayventa.Fragmentos.FragmentChats
 import com.example.appcomprayventa.Fragmentos.FragmentoInicio
 import com.example.appcomprayventa.Fragmentos.FragmentMisAnuncios
 import com.example.appcomprayventa.databinding.ActivityMainBinding
-import com.example.appcomprayventa.fragmentos.FragmentCuenta
+import com.example.appcomprayventa.Fragmentos.FragmentCuenta
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
