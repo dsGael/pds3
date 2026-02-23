@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">App Compra y Venta</string>
 
+    <string name="default_web_client_id">167343956735-0cc04rcju8ukts42e9pst9tc30du2sja.apps.googleusercontent.com</string>
+
     <string name="Item_Inicio">Inicio</string>
     <string name="Item_Chats">Chats</string>
     <string name="Item_Vender">Vender</string>
