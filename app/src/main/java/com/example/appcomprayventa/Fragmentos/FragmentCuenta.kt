@@ -11,6 +11,7 @@ import com.example.appcomprayventa.OpcionesLogin
 import com.example.appcomprayventa.R
 import com.example.appcomprayventa.databinding.FragmentCuentaBinding
 import com.google.firebase.auth.FirebaseAuth
+import kotlin.random.Random
 
 class FragmentCuenta : Fragment() {
 
@@ -35,6 +36,16 @@ class FragmentCuenta : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        val numeroAleatorio = Random.nextInt(1, 4)
+        val nombreImagen="perfil_$numeroAleatorio"
+        val idImagen = resources.getIdentifier(nombreImagen, "drawable", mContext.packageName)
+        if (idImagen != 0) {
+            binding.TvPerfil.setImageResource(idImagen)
+        } else {
+            binding.TvPerfil.setImageResource(R.drawable.perfil)
+        }
 
         firebaseAuth = FirebaseAuth.getInstance()
         binding.BtnCerrarSesion.setOnClickListener {
