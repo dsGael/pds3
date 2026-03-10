@@ -13,6 +13,7 @@ googleServicesVersion = "4.4.3"
 firebaseAutV="24.0.1"
 firebaseDatabaseV="22.0.1"
 loginGoogleV="21.4.0"
+glideV="5.0.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -26,7 +27,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 firebaseAuth= {group= "com.google.firebase", name="firebase-auth", version.ref="firebaseAutV"}
 firebaseDatabase= {group= "com.google.firebase", name="firebase-database", version.ref="firebaseDatabaseV"}
 loginGoogle={group= "com.google.android.gms", name="play-services-auth", version.ref="loginGoogleV"}
-
+glide = {group = "com.github.bumptech.glide", name = "glide", version.ref = "glideV"}
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
