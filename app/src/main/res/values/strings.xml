@@ -26,7 +26,6 @@
     <string name="Btn_registrar">Registrar</string>
 
 
-
     <!-- Perfil de usuario -->
     <string name="Txt_perfil">Perfil de usuario</string>
     <string name="Txt_informacion">Infomación: </string>
@@ -46,6 +45,15 @@
     <string name="TxtOpciones">Opciones</string>
     <string name="Btn_editar_perfil">Editar perfil</string>
     <string name="Btn_Cerrar_Sesion">Cerrar sesión</string>
+
+    <!--editar perfil-->
+    <string name="Txt_editar_perfil">Editar perfil</string>
+    <string name="Et_nombres">Nombres Completos</string>
+    <string name="Et_fecha_nac">Fecha de nac.</string>
+    <string name="Cod_tef">+00</string>
+    <string name="Et_telefono">Teléfono</string>
+    <string name="Btn_actualizar">Actualizar</string>
+
 
 
 
