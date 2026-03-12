@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.appcomprayventa.Constantes
+import com.example.appcomprayventa.EditarPerfil
 import com.example.appcomprayventa.OpcionesLogin
 import com.example.appcomprayventa.R
 import com.example.appcomprayventa.databinding.FragmentCuentaBinding
@@ -51,6 +52,10 @@ class FragmentCuenta : Fragment() {
             firebaseAuth.signOut()
             startActivity(Intent(mContext, OpcionesLogin::class.java))
             activity?.finishAffinity()
+        }
+        binding.BtnEditarPerfil.setOnClickListener {
+            startActivity(Intent(mContext, EditarPerfil::class.java))
+
         }
     }
 
