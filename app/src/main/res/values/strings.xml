@@ -54,7 +54,10 @@
     <string name="Et_telefono">Teléfono</string>
     <string name="Btn_actualizar">Actualizar</string>
 
-
+<!--    icono del usuario en chat-->
+    <string name="item_uid">UID</string>
+    <string name="item_nombre">Nobre</string>
+    <string name="item_email">Email</string>
 
 
 </resources>

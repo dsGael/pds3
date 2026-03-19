@@ -1,6 +1,7 @@
 package com.example.appcomprayventa
 
 import android.app.ProgressDialog
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.widget.PopupMenu
@@ -98,13 +99,35 @@ class EditarPerfil : AppCompatActivity() {
             val itemId = item.itemId
             if (itemId == 1) {
                 // camara
+                if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.TIRAMISU){
+                    concederPermisoCamara.launch(arrayOf(android.Manifest.permission.CAMERA))
+                }else{
+                    concederPermisoCamara.launch(arrayOf(android.Manifest.permission.CAMERA,
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                }
             }else if (itemId == 2) {
                 // galeria
+                if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.TIRAMISU){
+                    imagenGaleria()
+                }else{
+                    concederPermisoGaleria.launch(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                }
             }
             return@setOnMenuItemClickListener true
         }
 
     }
+
+
+    private val concederPermisoGaleria=registerForActivityResult(
+        ActivityResultContracts.RequestPermission()){resultado->
+        if(resultado){
+            imagenGaleria()
+        }else{
+            Toast.makeText(this, "No se concedieron los permisos", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     private val concederPermisoCamara= registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()){resultado->
@@ -123,5 +146,9 @@ class EditarPerfil : AppCompatActivity() {
 }
 
 private fun imagenCamara() {
+    TODO("Not yet implemented")
+}
+
+private fun imagenGaleria() {
     TODO("Not yet implemented")
 }
