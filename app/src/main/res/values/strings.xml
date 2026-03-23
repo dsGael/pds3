@@ -58,6 +58,8 @@
     <string name="item_uid">UID</string>
     <string name="item_nombre">Nobre</string>
     <string name="item_email">Email</string>
+    <string name="tv_sin_Usuario">No hay mas usuarios</string>
+
 
 
 </resources>
