@@ -1,8 +1,13 @@
 package com.example.appcomprayventa
 
 import android.app.ProgressDialog
+import android.content.ContentResolver
+import android.content.ContentValues
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.Menu
 import android.widget.PopupMenu
 import android.widget.Toast
@@ -18,11 +23,15 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlin.text.insert
 
 class EditarPerfil : AppCompatActivity() {
     private lateinit var binding: ActivityEditarPerfilBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressDialog: ProgressDialog
+
+    private var imagenUri: Uri? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -143,12 +152,58 @@ class EditarPerfil : AppCompatActivity() {
 
         }
     }
+
+    private fun imagenCamara() {
+        val contentValues= ContentValues()
+        contentValues.put(MediaStore.Images.Media.TITLE,"Titulo_imagen")
+        contentValues.put(MediaStore.Images.Media.DESCRIPTION,"Descripcion_imagen")
+
+        imagenUri= contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+
+        val intent= Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imagenUri)
+
+        resultadoCamara_ARL.launch(intent)
+
+    }
+    private val resultadoCamara_ARL=
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+                result->
+            if (result.resultCode== RESULT_OK){
+                try{
+                    Glide.with(this).load(imagenUri).placeholder(R.drawable.perfil).into(binding.perfilIV)
+                }catch (e: Exception){
+
+                }
+            }else{
+                Toast.makeText(this, "No se tomo la foto", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+    private fun imagenGaleria() {
+        val intent= Intent(Intent.ACTION_PICK)
+        intent.type="image/*"
+        resultadoGaleria_ARL.launch(intent)
+
+    }
+
+    private val resultadoGaleria_ARL=
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+            if (result.resultCode== RESULT_OK){
+                val data= result.data
+                imagenUri= data!!.data
+                try{
+                    Glide.with(this).load(imagenUri).placeholder(R.drawable.perfil).into(binding.perfilIV)
+
+                } catch (e:Exception){
+                }
+            }else{
+                Toast.makeText(this, "No se selecciono ninguna imagen", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
 }
 
-private fun imagenCamara() {
-    TODO("Not yet implemented")
-}
 
-private fun imagenGaleria() {
-    TODO("Not yet implemented")
-}
