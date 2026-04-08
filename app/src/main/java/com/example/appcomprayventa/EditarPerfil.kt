@@ -24,10 +24,19 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlin.text.insert
+import com.google.firebase.storage.FirebaseStorage
+
 
 class EditarPerfil : AppCompatActivity() {
+
+    private var nombres=""
+    private var f_nac=""
+    private var codigo=""
+    private var telefono=""
+
     private lateinit var binding: ActivityEditarPerfilBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firebaseStorage: FirebaseStorage
     private lateinit var progressDialog: ProgressDialog
 
     private var imagenUri: Uri? = null
@@ -44,6 +53,10 @@ class EditarPerfil : AppCompatActivity() {
         progressDialog.setCanceledOnTouchOutside(false)
 
         cargarInfo()
+
+        binding.BtnActualizar.setOnClickListener {
+            validarInfo()
+        }
 
         binding.FABCambiarImg.setOnClickListener {
             selec_imagen_de()
@@ -203,6 +216,67 @@ class EditarPerfil : AppCompatActivity() {
             }
         }
 
+
+
+    private fun subirImagen(){
+        progressDialog.setMessage("Subiendo imagen...")
+        progressDialog.show()
+
+        val rutaImagen="imagenesPerfil/"+firebaseAuth.uid
+        val storageReference= FirebaseStorage.getInstance().getReference(rutaImagen)
+        storageReference.putFile(imagenUri!!)
+            .addOnSuccessListener{taskSnapshot ->
+                val uriTask= taskSnapshot.storage.downloadUrl
+                while(!uriTask.isSuccessful);
+                val urlImagenCargada= "${uriTask.result}"
+                if(uriTask.isSuccessful){
+                   // actualizarImagenDB(urlImagenCargada)
+                }
+        }
+    }
+
+    private fun validarInfo(){
+        nombres=binding.EtNombres.text.toString().trim()
+        f_nac=binding.EtFNac.text.toString().trim()
+        codigo=binding.selectorCod.selectedCountryCodeWithPlus
+        telefono=binding.EtTelefono.text.toString().trim()
+
+        if(nombres.isEmpty()){
+            Toast.makeText(this, "Ingrese sus nombres", Toast.LENGTH_SHORT).show()
+        }else if (f_nac.isEmpty()) {
+            Toast.makeText(this, "Ingrese su fecha de nacimiento", Toast.LENGTH_SHORT).show()
+        }else if (telefono.isEmpty()) {
+            Toast.makeText(this, "Ingrese su telefono", Toast.LENGTH_SHORT).show()
+        }else if (codigo.isEmpty()){
+            Toast.makeText(this, "Seleccione su codigo de pais", Toast.LENGTH_SHORT).show()
+        }else{
+            actualizarInfo()
+        }
+    }
+
+    private fun actualizarInfo() {
+        progressDialog.setMessage("Actualizando información")
+        progressDialog.show()
+
+        val hashMap = HashMap<String, Any>()
+        hashMap["nombres"] = "${nombres}"
+        hashMap["fecha_nac"] = "${f_nac}"
+        hashMap["codigoTelefono"] = "${f_nac}"
+        hashMap["telefono"] = "${telefono}"
+
+        val  ref = FirebaseDatabase.getInstance().getReference("Usuarios")
+        ref.child(firebaseAuth.uid!!)
+            .updateChildren(hashMap)
+            .addOnSuccessListener {
+                progressDialog.dismiss()
+                Toast.makeText(this,"Información actualizada", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e->
+                progressDialog.dismiss()
+                Toast.makeText(this,"No se pudo actualizar la información debido a ${e.message}", Toast.LENGTH_SHORT).show()
+
+            }
+    }
 
 }
 

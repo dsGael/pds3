@@ -4,17 +4,24 @@ package com.example.appcomprayventa
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.appcomprayventa.Anuncios.CrearAnuncio
 import com.example.appcomprayventa.Fragmentos.FragmentChats
 import com.example.appcomprayventa.Fragmentos.FragmentoInicio
 import com.example.appcomprayventa.Fragmentos.FragmentMisAnuncios
 import com.example.appcomprayventa.databinding.ActivityMainBinding
 import com.example.appcomprayventa.Fragmentos.FragmentCuenta
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+
+
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var firebaseAuth: FirebaseAuth
+
+    private lateinit var firebaseStorage: FirebaseStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +54,10 @@ class MainActivity : AppCompatActivity() {
                     false
                 }
             }
+        }
+
+        binding.FAB.setOnClickListener {
+            startActivity(Intent(this, CrearAnuncio::class.java))
         }
     }
     private fun comprobarSesion(){

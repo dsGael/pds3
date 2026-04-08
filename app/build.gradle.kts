@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.firebaseDatabase)
     implementation(libs.loginGoogle)
     implementation(libs.glide)
+    implementation(libs.firebase.storage)
     implementation(libs.ccp)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
